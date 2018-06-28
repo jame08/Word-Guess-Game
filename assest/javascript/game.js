@@ -1,26 +1,26 @@
 
 
-
-var win, looses, remainingLetters;
-   
-    
     var game = {
     gameWords : ["pineapple","beetle","restaurant", "Building","Torn", "underscroll"],
 
-    _random : "",
+    _random : [],
     _dashesAr: [],
+    win: 0,
+    looses:0,
+    remainingLetters: 0,
 
 
     randomWord: function() {
 
-     this._random = this.gameWords[Math.floor(Math.random()*this.gameWords.length)].toString();
-
+     var raWord = this.gameWords[Math.floor(Math.random()*this.gameWords.length)].toString();
+        this._random = raWord.split('');
+        this.remainingLetters = this._random.length;
     },
  
     fillDashes: function (){
         
          var dashesAr= [];
-        for (var i = 0; i <= this._random.length -1  ;i++)
+        for (var i = 0; i <= this._random.length - 1;i++)
         {
           
         this._dashesAr[i] =   dashesAr[i] = "_";
@@ -30,16 +30,30 @@ var win, looses, remainingLetters;
  
     },
  
-    compareWord: function(){
+    checkLetter: function(arg){
+    return this._random.includes(arg);
 
+    },
+
+    compareWord: function(guess){
+
+    if (this.checkLetter(guess)){
+        
     for (var j = 0; j < this._random.length; j++)
      { 
-         if (this._random[j] === guess) {
-        answerAr[j] = guess;
-        
-        remainingLetters--;
-        } }
-        
+
+        if(this._random[j] === guess) {
+         this._dashesAr[j] = guess;
+         this.remainingLetters--
+        }
+    
+    
 }
  
+}
+}
+
+
+
+
 }
