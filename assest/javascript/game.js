@@ -1,57 +1,65 @@
 
 
-    var game = {
-    gameWords : ["pineapple","beetle","restaurant", "Building","Torn", "underscroll"],
+    var  game  = {
+        gameWords:  ["pineapple", "beetle", "restaurant",  "building", "torn",  "underscroll"],
 
-    _random : [],
+    _random: [],
     _dashesAr: [],
     win: 0,
-    looses:0,
+    looses: 0,
     remainingLetters: 0,
+    remainingTries: 5,
 
 
-    randomWord: function() {
+        randomWord:  function () {
 
-     var raWord = this.gameWords[Math.floor(Math.random()*this.gameWords.length)].toString();
+             var raWord  =  this.gameWords[Math.floor(Math.random() * this.gameWords.length)].toString();
         this._random = raWord.split('');
         this.remainingLetters = this._random.length;
-    },
- 
-    fillDashes: function (){
-        
-         var dashesAr= [];
-        for (var i = 0; i <= this._random.length - 1;i++)
-        {
-          
-        this._dashesAr[i] =   dashesAr[i] = "_";
-          
- 
-        } 
- 
-    },
- 
-    checkLetter: function(arg){
-    return this._random.includes(arg);
+        },
+
+        fillDashes:  function  () {
+
+        var dashesAr = [];
+                for  (var  i  =  0;  i  <=  this._random.length  - 1; i++) {
+
+                    this._dashesAr[i] = dashesAr[i] = "_";
+
+
+        }
 
     },
 
-    compareWord: function(guess){
+    checkLetter: function (arg) {
+        return this._random.includes(arg);
 
-    if (this.checkLetter(guess)){
-        
-    for (var j = 0; j < this._random.length; j++)
-     { 
+    },
 
-        if(this._random[j] === guess) {
-         this._dashesAr[j] = guess;
-         this.remainingLetters--
+        compareWord:  function (guess) {
+
+        if (this.checkLetter(guess)) {
+
+            for (var j = 0; j < this._random.length; j++) {
+
+                if (this._random[j] === guess) {
+                    this._dashesAr[j] = guess;
+                    this.remainingLetters--;
+                }
+
+            }
+
         }
-    
-    
-}
- 
-}
-}
+        else {
+            this.remainingTries--;
+
+        }
+
+    },
+
+    bgMusic: function () {
+
+
+    }
 
 
 
