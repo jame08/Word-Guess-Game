@@ -11,6 +11,7 @@
     remainingTries: 5,
 
 
+
         randomWord:  function () {
 
              var raWord  =  this.gameWords[Math.floor(Math.random() * this.gameWords.length)].toString();
@@ -27,6 +28,12 @@
 
 
         }
+
+    },
+
+    startGame: function (){
+        this.fillDashes();
+        this.randomWord();
 
     },
 

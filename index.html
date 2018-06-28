@@ -37,25 +37,25 @@
 
   <div class="container">
 
-<div class="col-md-2"></div>
+    <div class="col-md-2"></div>
 
     <div class="col-md-8 border border-dark center">
 
 
 
-        <div class="guessW">sdgsdgs</div>
+      <div id="guessW">sdgsdgs</div>
 
-        <br>
-        
-        <div class="remainingL">sgsdgsdg</div>
-        <div class="letterP">sgfgdsfgd</div>
+      <br>
+
+      <div class="remainingL">sgsdgsdg</div>
+      <div class="letterP">sgfgdsfgd</div>
 
     </div>
 
     <div class="col-md-2"></div>
 
 
-    
+
 
   </div>
 
@@ -67,16 +67,52 @@
 
 
   <script>
+    
+    
+    var test= game.startGame();
 
-    var test = game.randomWord();
-    document.getElementById("test").innerHTML(test);
+    document.addEventListener("keydown", function (e) {
+
+  
+
+          if(e.keyCode>= 65 && e.keyCode<= 90){
+
+              do {
+
+                    game.compareWord(e.key);
+        
+        
+        document.getElementById("guessW").innerText =game._dashesAr;
+
+
+      } while ((game._remainingLetters === 0 ) || (game.remainingTries=== 0));
+
+
+          }
+       else {
+
+        game.remainingLetters--;
+       }
+
+
+
+  
+    })
+
+
+
+
+
+
+
+
 
   </script>
 
   <script type="text/javascript" src="assest/javascript/game.js"></script>
 </body>
 
-</html> 
+</html>
 
-      
-      <!-- <img src = "https://ih1.redbubble.net/image.381084717.7877/flat,800x800,070,f.jpg" width="150rem"> -->
+
+<!-- <img src = "https://ih1.redbubble.net/image.381084717.7877/flat,800x800,070,f.jpg" width="150rem"> -->
