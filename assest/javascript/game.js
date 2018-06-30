@@ -12,7 +12,8 @@ var game = (function () {
         win: 0,
         looses: 0,
         remainingLetters: 0,
-        remainingTries: 5,
+        remainingTries: 10,
+        gameOver: false,
 
 
 
@@ -51,7 +52,7 @@ var game = (function () {
                     this._dashesAr[j] = arg;
                     this.remainingLetters--;
                 }
-
+            
             }
         },
     }
@@ -62,6 +63,7 @@ var game = (function () {
 
             private.randomWord();
             private.fillDashes();
+            console.log (private);
         },
 
         getUserImput: function (arg) {
@@ -83,14 +85,23 @@ var game = (function () {
             return private.checkLetter(arg);
 
         },
-
-
-
   
+        
         setRT: function() {
-            private.remainingTries--;
+
+           if (private.remainingTries > 0){ 
+            private.remainingTries = private.remainingTries - 1;
+           }
+           else
+           {
+            private.gameOver = true;
+
+           }
+            
 
         },
+
+
 
         getCompareWord: function (arg) {
             private.compareWord(arg);
