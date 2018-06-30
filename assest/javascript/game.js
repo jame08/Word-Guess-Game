@@ -84,20 +84,9 @@ var game = (function () {
 
         },
 
-        getRL: function () {
-            return private.remainingLetters;
-        },
 
-        setRL: function() {
 
-            private.remainingLetters--;
-        },
-
-        getRT: function(){
-            return private.remainingTries;
-
-        },
-
+  
         setRT: function() {
             private.remainingTries--;
 
@@ -110,9 +99,9 @@ var game = (function () {
 
         updateHtml: function (){
 
-        document.getElementById("guessW").innerText = this.getDashes();
-        document.getElementById("re-letters").innerText = this.getRL();
-        document.getElementById("re-tries").innerText = this.getRT();
+        document.getElementById("guessW").innerText = private._dashesAr;
+        document.getElementById("re-letters").innerText = private.remainingLetters;
+        document.getElementById("re-tries").innerText = private.remainingTries;
         }
 
 
