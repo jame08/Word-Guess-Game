@@ -17,6 +17,7 @@
     crossorigin="anonymous">
   <link rel="stylesheet" href="assest/css/style.css">
   <link rel="stylesheet" href="assest/css/reset.css">
+  <script type="text/javascript" src="assest/javascript/game.js"></script>
 
 
 
@@ -63,48 +64,38 @@
   </div>
 
 
-  <script>
-   
-
-   document.addEventListener('keydown', function(e) {
 
 
-if (e.keyCode >= 65  && e.keyCode <= 90)  {
 
   
 
-
-  
-  
-
-  document.getElementById("guessW").innerText = game._dashesAr;
-  document.getElementById("re-letters").innerText = game._random;
-
-
-
-}
-
-
-
-
-   });
-  
-
-
-
-
-
-
-
-
-
-
-  </script>
-
-  <script type="text/javascript" src="assest/javascript/game.js"></script>
 </body>
 
 </html>
 
 
-<!-- <img src = "https://ih1.redbubble.net/image.381084717.7877/flat,800x800,070,f.jpg" width="150rem"> -->
+<script>
+
+
+   game.init();
+
+  document.addEventListener('keydown', function(e) {
+      
+    
+  
+  if (e.keyCode >= 65  && e.keyCode <= 90)  {
+ 
+    
+  
+  
+  
+  
+    document.getElementById("guessW").innerText = game._dashesAr;
+    document.getElementById("re-letters").innerText = game._random;
+  
+  }
+  
+     });
+    
+  
+  </script>
