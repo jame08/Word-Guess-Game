@@ -1,6 +1,7 @@
 
 
-var GWG = (function() {
+var game = (function() {
+
 
     var private = {
 
@@ -13,19 +14,14 @@ var GWG = (function() {
     remainingLetters: 0,
     remainingTries: 5,
 
-    Init: function(word){
-        this.word =word;
-       this.randomWord();
-       this.fillDashes();
-       
-    },
+ 
 
     randomWord: function () {
 
         
         var raWord = this.wordList[Math.floor(Math.random() * this.wordList.length)].toString();
-        this._random = raWord.split('');
-        this.remainingLetters = this._random.length;
+        this._randomWord = raWord.split('');
+        this.remainingLetters = this._randomWord.length;
 
 
     },
@@ -69,6 +65,31 @@ var GWG = (function() {
 
     },//CompareWord
     }
-  
+
+
+  return {
+    init: function(word){
+       
+       private.randomWord();
+       private.fillDashes(); 
+    },
+
+    getUserImput: function(arg){
+        private.compareWord(arg);
+    },
+
+    getWord: function(){
+
+        return private._randomWord;
+    },
+
+    getDashes: function(){
+
+        return private._dashesAr;
+    },
+
+
+
+  }
 })();
 
