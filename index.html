@@ -44,14 +44,20 @@
 
 
 
-      <div>Guess the word --> <div id="guessW"></div></div>
-      <div>Remaining Letters --> <div id="re-letters"></div></div>
-      <div>Used Words --> <div id="usedW"></div></div>
-      
+      <div>Guess the word -->
+        <div id="guessW"></div>
+      </div>
+      <div>Remaining Letters -->
+        <div id="re-letters"></div>
+      </div>
+      <div>Used Words -->
+        <div id="usedW"></div>
+      </div>
+
 
       <br>
 
-      <div class="remainingL"></div>
+      <div id="re-tries"></div>
       <div class="letterP"></div>
 
     </div>
@@ -67,7 +73,7 @@
 
 
 
-  
+
 
 </body>
 
@@ -77,25 +83,47 @@
 <script>
 
 
-   game.init();
+  
 
-  document.addEventListener('keydown', function(e) {
-      
+  document.addEventListener("keydown", function (arg) {
+    console.log(arg);
+
+    if (arg.keyCode == 32) {
+
+      game.init();
+      game.updateHtml();
+    }
+
+        
+      if (arg.keyCode >= 65 && arg.keyCode <= 90) {
+
+
+      if (game.testLetter(arg.key)) {
+
+
+        game.getCompareWord(arg.key);
+        game.setRL();
+        game.updateHtml();
+        
+        
+        
+      }
+      else
+      {
+       
+        game.setRT();
+      }
+
+
+
+        }
+
+    
+    
+  })
     
   
-  if (e.keyCode >= 65  && e.keyCode <= 90)  {
- 
-    
-  
-  
-  
-  
-    document.getElementById("guessW").innerText = game._dashesAr;
-    document.getElementById("re-letters").innerText = game._random;
-  
-  }
-  
-     });
-    
-  
-  </script>
+
+
+
+</script>

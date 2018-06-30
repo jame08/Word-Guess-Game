@@ -1,50 +1,49 @@
 
 
-var game = (function() {
+var game = (function () {
 
 
     var private = {
 
-    wordList: ["pineapple", "beetle", "restaurant", "building", "torn", "underscroll"],
+        wordList: ["pineapple", "beetle", "restaurant", "building", "torn", "underscroll"],
 
-    _randomWord: [],
-    _dashesAr: [],
-    win: 0,
-    looses: 0,
-    remainingLetters: 0,
-    remainingTries: 5,
-
- 
-
-    randomWord: function () {
-
-        
-        var raWord = this.wordList[Math.floor(Math.random() * this.wordList.length)].toString();
-        this._randomWord = raWord.split('');
-        this.remainingLetters = this._randomWord.length;
+        _randomWord: [],
+        _dashesAr: [],
+        win: 0,
+        looses: 0,
+        remainingLetters: 0,
+        remainingTries: 5,
 
 
-    },
 
-    fillDashes: function () {
-
-        var dashesAr = [];
-        for (var i = 0; i <= this._randomWord.length - 1; i++) {
-
-            this._dashesAr[i] = dashesAr[i] = "_";
-
-        }
-    },
+        randomWord: function () {
 
 
-    checkLetter: function (arg) {
-        return this._randomWord.includes(arg);
+            var raWord = this.wordList[Math.floor(Math.random() * this.wordList.length)].toString();
+            this._randomWord = raWord.split('');
+            this.remainingLetters = this._randomWord.length;
 
-    },
 
-    compareWord: function (arg) {
+        },
 
-        if (this.checkLetter(arg)) {
+        fillDashes: function () {
+
+            var dashesAr = [];
+            for (var i = 0; i <= this._randomWord.length - 1; i++) {
+
+                this._dashesAr[i] = dashesAr[i] = "_";
+
+            }
+        },
+
+
+        checkLetter: function (arg) {
+            return this._randomWord.includes(arg);
+
+        },
+
+        compareWord: function (arg) {
+
 
             for (var j = 0; j < this._randomWord.length; j++) {
 
@@ -54,42 +53,70 @@ var game = (function() {
                 }
 
             }
-
-
-
-        }
-        else {
-            this.remainingTries--;
-
-        }
-
-    },//CompareWord
+        },
     }
 
 
-  return {
-    init: function(word){
-       
-       private.randomWord();
-       private.fillDashes(); 
-    },
+    return {
+        init: function (word) {
 
-    getUserImput: function(arg){
-        private.compareWord(arg);
-    },
+            private.randomWord();
+            private.fillDashes();
+        },
 
-    getWord: function(){
+        getUserImput: function (arg) {
+            private.compareWord(arg);
+        },
 
-        return private._randomWord;
-    },
+        getWord: function () {
 
-    getDashes: function(){
+            return private._randomWord;
+        },
 
-        return private._dashesAr;
-    },
+        getDashes: function () {
+
+            return private._dashesAr;
+        },
+
+        testLetter: function (arg) {
+
+            return private.checkLetter(arg);
+
+        },
+
+        getRL: function () {
+            return private.remainingLetters;
+        },
+
+        setRL: function() {
+
+            private.remainingLetters--;
+        },
+
+        getRT: function(){
+            return private.remainingTries;
+
+        },
+
+        setRT: function() {
+            private.remainingTries--;
+
+        },
+
+        getCompareWord: function (arg) {
+            private.compareWord(arg);
+
+        },
+
+        updateHtml: function (){
+
+        document.getElementById("guessW").innerText = this.getDashes();
+        document.getElementById("re-letters").innerText = this.getRL();
+        document.getElementById("re-tries").innerText = this.getRT();
+        }
 
 
 
-  }
+
+    }
 })();
-
