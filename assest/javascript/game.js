@@ -1,59 +1,65 @@
 
 
-    var  game  = {
-        gameWords:  ["pineapple", "beetle", "restaurant",  "building", "torn",  "underscroll"],
+var GWG = (function() {
 
-    _random: [],
+    var private = {
+
+    wordList: ["pineapple", "beetle", "restaurant", "building", "torn", "underscroll"],
+
+    _randomWord: [],
     _dashesAr: [],
     win: 0,
     looses: 0,
     remainingLetters: 0,
     remainingTries: 5,
 
+    Init: function(word){
+        this.word =word;
+       this.randomWord();
+       this.fillDashes();
+       
+    },
 
+    randomWord: function () {
 
-        randomWord:  function () {
-
-             var raWord  =  this.gameWords[Math.floor(Math.random() * this.gameWords.length)].toString();
+        
+        var raWord = this.wordList[Math.floor(Math.random() * this.wordList.length)].toString();
         this._random = raWord.split('');
         this.remainingLetters = this._random.length;
-        },
 
-        fillDashes:  function  () {
+
+    },
+
+    fillDashes: function () {
 
         var dashesAr = [];
-                for  (var  i  =  0;  i  <=  this._random.length  - 1; i++) {
+        for (var i = 0; i <= this._randomWord.length - 1; i++) {
 
-                    this._dashesAr[i] = dashesAr[i] = "_";
-
+            this._dashesAr[i] = dashesAr[i] = "_";
 
         }
-
     },
 
-    startGame: function (){
-        this.fillDashes();
-        this.randomWord();
-
-    },
 
     checkLetter: function (arg) {
-        return this._random.includes(arg);
+        return this._randomWord.includes(arg);
 
     },
 
-        compareWord:  function (guess) {
+    compareWord: function (arg) {
 
-        if (this.checkLetter(guess)) {
+        if (this.checkLetter(arg)) {
 
-            for (var j = 0; j < this._random.length; j++) {
+            for (var j = 0; j < this._randomWord.length; j++) {
 
-                if (this._random[j] === guess) {
-                    this._dashesAr[j] = guess;
+                if (this._randomWord[j] === arg) {
+                    this._dashesAr[j] = arg;
                     this.remainingLetters--;
                 }
 
             }
+
+
 
         }
         else {
@@ -61,14 +67,8 @@
 
         }
 
-    },
-
-    bgMusic: function () {
-
-
+    },//CompareWord
     }
+  
+})();
 
-
-
-
-}
