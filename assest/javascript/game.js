@@ -28,8 +28,8 @@ var game = (function () {
         },
 
         fillDashes: function () {
-
-            var dashesAr = [];
+            this._dashesAr =[];
+           var dashesAr = [];
             for (var i = 0; i <= this._randomWord.length - 1; i++) {
 
                 this._dashesAr[i] = dashesAr[i] = "_";
@@ -68,11 +68,12 @@ var game = (function () {
 
 
     return {
-        init: function (word) {
+        init: function () {
             private.win = 0;
             private.remainingTries = 7;
             private.randomWord();
             private.fillDashes();
+           
             console.log (private);
         },
 
@@ -102,6 +103,7 @@ var game = (function () {
            else
            {
             this.gameOver();
+           
 
            }
             
@@ -123,14 +125,14 @@ var game = (function () {
         document.getElementById("re-tries").innerText = private.remainingTries;
 
         if(private.compareArr()){
-
-            private.win = private.win + 1;
+            
             this.reset();
+            private.win = private.win + 1;
             document.getElementById("guessW").innerText = private._dashesAr;
             document.getElementById("re-letters").innerText = private.remainingLetters;
             document.getElementById("re-tries").innerText = private.remainingTries;
              document.getElementById("usedW").innerText = private.win;
-             
+            
         }
         
 
@@ -147,6 +149,8 @@ var game = (function () {
             if (confirm("You Lost. Do you want to play again"))
             {   
                 this.reset();
+                private.looses = private.looses +1;
+                console.log(private.looses);
                 
             }
             else {
@@ -164,9 +168,10 @@ var game = (function () {
             
 
 
-        }
-        
+        },
 
+
+        
 
 
     }
