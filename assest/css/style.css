@@ -3,3 +3,14 @@
     margin: auto;
     
 }
+
+.card-text {
+
+    margin-top: 1rem;
+    font-size: 1rem;
+}
+
+.arr {
+
+    font-size: 1.2rem;
+}
