@@ -12,8 +12,8 @@ var game = (function () {
         win: 0,
         looses: 0,
         remainingLetters: 0,
-        remainingTries: 10,
-        gameOver: false,
+        remainingTries: 7,
+        _gameOver: false,
 
 
 
@@ -55,20 +55,27 @@ var game = (function () {
             
             }
         },
+
+        compareArr: function(){
+            
+
+            return this._dashesAr.toString() === this._randomWord.toString();
+
+        },
+
+    
     }
 
 
     return {
         init: function (word) {
-
+            private.win = 0;
+            private.remainingTries = 7;
             private.randomWord();
             private.fillDashes();
             console.log (private);
         },
 
-        getUserImput: function (arg) {
-            private.compareWord(arg);
-        },
 
         getWord: function () {
 
@@ -89,12 +96,12 @@ var game = (function () {
         
         setRT: function() {
 
-           if (private.remainingTries > 0){ 
+           if (private.remainingTries > 1){ 
             private.remainingTries = private.remainingTries - 1;
            }
            else
            {
-            private.gameOver = true;
+            this.gameOver();
 
            }
             
@@ -109,12 +116,56 @@ var game = (function () {
         },
 
         updateHtml: function (){
-
+        
+        
         document.getElementById("guessW").innerText = private._dashesAr;
         document.getElementById("re-letters").innerText = private.remainingLetters;
         document.getElementById("re-tries").innerText = private.remainingTries;
-        }
 
+        if(private.compareArr()){
+
+            private.win = private.win + 1;
+            this.reset();
+            document.getElementById("guessW").innerText = private._dashesAr;
+            document.getElementById("re-letters").innerText = private.remainingLetters;
+            document.getElementById("re-tries").innerText = private.remainingTries;
+             document.getElementById("usedW").innerText = private.win;
+             
+        }
+        
+
+        
+        },
+        
+        getCompareArr: function(){
+
+            return private.compareArr();
+
+        },
+
+        gameOver: function (){
+            if (confirm("You Lost. Do you want to play again"))
+            {   
+                this.reset();
+                
+            }
+            else {
+
+                alert("Bye Felicia")
+            }
+
+        },
+
+        reset: function() {
+            
+            private.remainingTries = 7;
+            private.randomWord();
+            private.fillDashes();
+            
+
+
+        }
+        
 
 
 
