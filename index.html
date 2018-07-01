@@ -48,18 +48,23 @@
       <div>Guess the word -->
         <div id="guessW"></div>
       </div>
+      <hr>
       <div>Remaining Letters -->
-        <div id="re-letters"></div>
+        <div id="reLetters"></div>
       </div>
-      <div>Used Words -->
-        <div id="usedW"></div>
+      <hr>
+      <div>Used Letters -->
+        <div id="usedL"></div>
       </div>
+      <div>Remaining Letters -->
+          <div id="reTries"></div>
+        </div>
+        
+
 
 
       <br>
 
-      <div id="re-tries"></div>
-      <div class="letterP"></div>
 
     </div>
 
@@ -97,7 +102,7 @@
 
         
       if (arg.keyCode >= 65 && arg.keyCode <= 90) {
-
+      
 
       if (game.testLetter(arg.key)) {
 
@@ -113,7 +118,9 @@
       else
       {
        
-        game.setRT();
+        game.setLettersU(arg.key);
+        game.setRT(); 
+       
         game.updateHtml();
       }
 

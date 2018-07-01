@@ -9,11 +9,10 @@ var game = (function () {
 
         _randomWord: [],
         _dashesAr: [],
-        win: 0,
-        looses: 0,
         remainingLetters: 0,
         remainingTries: 7,
         _gameOver: false,
+        _usedLetters:[],
 
 
 
@@ -69,7 +68,7 @@ var game = (function () {
 
     return {
         init: function () {
-            private.win = 0;
+        
             private.remainingTries = 7;
             private.randomWord();
             private.fillDashes();
@@ -99,6 +98,8 @@ var game = (function () {
 
            if (private.remainingTries > 1){ 
             private.remainingTries = private.remainingTries - 1;
+            
+
            }
            else
            {
@@ -108,6 +109,16 @@ var game = (function () {
            }
             
 
+        },
+
+        setLettersU: function(arg){
+
+            private._usedLetters.push(arg);
+          
+        },
+
+        getLetterU: function(){
+            return private._usedLetters;
         },
 
 
@@ -121,17 +132,18 @@ var game = (function () {
         
         
         document.getElementById("guessW").innerText = private._dashesAr;
-        document.getElementById("re-letters").innerText = private.remainingLetters;
-        document.getElementById("re-tries").innerText = private.remainingTries;
+        document.getElementById("reLetters").innerText = private.remainingLetters;
+        document.getElementById("reTries").innerText = private.remainingTries;
+        document.getElementById("usedL").innerText = private._usedLetters;
 
         if(private.compareArr()){
             
             this.reset();
-            private.win = private.win + 1;
+            
             document.getElementById("guessW").innerText = private._dashesAr;
-            document.getElementById("re-letters").innerText = private.remainingLetters;
-            document.getElementById("re-tries").innerText = private.remainingTries;
-             document.getElementById("usedW").innerText = private.win;
+            document.getElementById("reLetters").innerText = private.remainingLetters;
+            document.getElementById("reTries").innerText = private.remainingTries;
+            document.getElementById("usedL").innerText = private._usedLetters;
             
         }
         
@@ -149,8 +161,7 @@ var game = (function () {
             if (confirm("You Lost. Do you want to play again"))
             {   
                 this.reset();
-                private.looses = private.looses +1;
-                console.log(private.looses);
+                
                 
             }
             else {
@@ -165,7 +176,7 @@ var game = (function () {
             private.remainingTries = 7;
             private.randomWord();
             private.fillDashes();
-            
+            private._usedLetters = [];
 
 
         },
